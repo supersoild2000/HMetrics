@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <PackageId>HMetricsLib</PackageId>
+    <PackageId>HMetrics</PackageId>
     <Version>1.0.0</Version>
     <Authors>Hryhorii Pazych</Authors>
     <Company>Hryhorii Pazych</Company>
