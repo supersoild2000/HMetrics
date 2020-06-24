@@ -7,6 +7,11 @@ namespace HMetrics
 
         public static CpuImplWin32 Current => lazy.Value;
 
+        public override void GetTemperature()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void GetUsage()
         {
             throw new NotImplementedException();

@@ -18,6 +18,15 @@ namespace HMetrics
         }
 
         public static CpuImplUnix Current => lazy.Value;
+
+        public override void GetTemperature()
+        {
+            int temp;
+            temperature.Item2 = int.TryParse(Tools.GetFileText(@"/sys/class/thermal/thermal_zone0/temp"), out temp);
+            if (temperature.Item2) temperature.Item1 = temp / 1000;
+
+        }
+
         public override void GetUsage() => usage.Item2 = double.TryParse(Tools.ExecuteShellCommand(usageScript), out usage.Item1);
         //usage.Item2 ? usage.Item1 : double.NaN
     }
