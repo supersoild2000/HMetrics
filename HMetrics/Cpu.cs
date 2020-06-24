@@ -10,6 +10,7 @@ namespace HMetrics
         public static double Frequency => impl.Frequency;
 
         public static string ModelName => impl.ModelName;
+        public static double Temperature => impl.Temperature;
 
     }
 }
