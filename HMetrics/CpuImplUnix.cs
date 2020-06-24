@@ -23,7 +23,7 @@ namespace HMetrics
         {
             int temp;
             temperature.Item2 = int.TryParse(Tools.GetFileText(@"/sys/class/thermal/thermal_zone0/temp"), out temp);
-            if (temperature.Item2) temperature.Item1 = temp / 1000;
+            if (temperature.Item2) temperature.Item1 = temp / 1000.0;
 
         }
 
