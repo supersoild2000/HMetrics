@@ -24,7 +24,7 @@ namespace HMetrics
             get
             {
                 GetTemperature();
-                return temperature.Item2 ? usage.Item1 : double.NaN;
+                return temperature.Item2 ? temperature.Item1 : double.NaN;
             }
         }
         public abstract void GetUsage();
