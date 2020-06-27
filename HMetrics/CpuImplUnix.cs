@@ -31,7 +31,7 @@ namespace HMetrics
 
         public override void GetTemperature()
         {
-            string output = new StringReader(Tools.ExecuteShellCommand(cpuTempScript)).ReadLine();
+            string output = Tools.ExecuteShellCommand(cpuTempScript);
             int temp;
             if (output == String.Empty)
             {

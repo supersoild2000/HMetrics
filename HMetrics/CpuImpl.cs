@@ -33,7 +33,7 @@ namespace HMetrics
         {
             get
             {
-                GetChipsetTemp();
+                GetTemperature();
                 return temperature.Item2 ? temperature.Item1 : double.NaN;
             }
         }
