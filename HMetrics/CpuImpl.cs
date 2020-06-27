@@ -7,6 +7,7 @@ namespace HMetrics
         protected (string, bool) modelName;
         protected (double, bool) frequency;
         protected (double, bool) usage;
+        protected (double, bool) chipsetTemp;
         protected (double, bool) temperature;
         public int CoresCount => coresCount.Item2 ? coresCount.Item1 : 0;
         public string ModelName => modelName.Item2 ? modelName.Item1 : "Unknown";
@@ -19,15 +20,25 @@ namespace HMetrics
                 return usage.Item2 ? usage.Item1 : double.NaN;
             }
         }
+        public double ChipsetTemp
+        {
+            get
+            {
+                GetChipsetTemp();
+                return chipsetTemp.Item2 ? chipsetTemp.Item1 : double.NaN;
+            }
+        }
+
         public double Temperature
         {
             get
             {
-                GetTemperature();
+                GetChipsetTemp();
                 return temperature.Item2 ? temperature.Item1 : double.NaN;
             }
         }
         public abstract void GetUsage();
+        public abstract void GetChipsetTemp();
         public abstract void GetTemperature();
     }
 }
