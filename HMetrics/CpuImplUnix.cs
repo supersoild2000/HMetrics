@@ -51,7 +51,7 @@ namespace HMetrics
 
         }
 
-        public override void GetUsage() => usage.Item2 = double.TryParse(Tools.ExecuteShellCommand(usageScript), out usage.Item1);
+        public override void GetUsage() => usage.Item2 = double.TryParse(Tools.ExecuteShellCommand(usageScript).Replace(',', '.'), out usage.Item1);
         //usage.Item2 ? usage.Item1 : double.NaN
     }
 }
