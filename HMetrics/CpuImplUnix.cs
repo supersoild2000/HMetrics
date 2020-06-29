@@ -8,7 +8,7 @@ namespace HMetrics
     internal class CpuImplUnix : CpuImpl
     {
         private const string usageScript = "awk -v a=\"$(awk '/cpu /{print $2+$4,$2+$4+$5}' /proc/stat; sleep 1)\" '/cpu /{split(a,b,\" \"); print 100*($2+$4-b[1])/($2+$4+$5-b[2])}'  /proc/stat";
-        private const string cpuTempScript = "paste /sys/devices/platform/coretemp.0/hwmon/hwmon?/temp?_label /sys/devices/platform/coretemp.0/hwmon/hwmon?/temp?_input";
+        private const string cpuTempScript = "paste /sys/devices/platform/coretemp.0/hwmon/hwmon?/temp1_label /sys/devices/platform/coretemp.0/hwmon/hwmon?/temp1_input";
         private static readonly Lazy<CpuImplUnix> lazy = new Lazy<CpuImplUnix>(() => new CpuImplUnix());
         private CpuImplUnix()
         {

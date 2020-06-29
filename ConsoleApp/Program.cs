@@ -13,7 +13,7 @@ namespace ConsoleApp
             Console.WriteLine("Frequency: " + Cpu.Frequency);
             while (true)
             {
-                Console.WriteLine("Cpu usage: " + Cpu.Usage + " %\t Cipset temp: " + Cpu.ChipsetTemp + " °C" + " %\t temp: " + Cpu.Temperature + " °C");
+                Console.WriteLine("Cpu usage: " + Cpu.Usage + " %\t Chipset temp: " + Cpu.ChipsetTemp + " °C" + " %\t temp: " + Cpu.Temperature + " °C");
             }
         }
     }
