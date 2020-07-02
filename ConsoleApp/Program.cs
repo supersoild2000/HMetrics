@@ -16,7 +16,7 @@ namespace ConsoleApp
             while (true)
             {
 
-                Console.WriteLine("\rCpu usage: " + Cpu.Usage.ToString("000.00") + " %\tChipset temp: " + Cpu.ChipsetTemp.ToString("000.00") + " °C" + " %\tCpu temp: " + Cpu.Temperature.ToString("000.00") + " °C" + "\tClockAvg: " + Cpu.ClockAvg.ToString("000") + " MHz");
+                Console.WriteLine("\rCpu usage: " + Cpu.Usage.ToString("000.00") + " %\tChipset temp: " + Cpu.ChipsetTemp.ToString("000.00") + " °C" + " %\tCpu temp: " + Cpu.Temperature.ToString("000.00") + " °C" + "\tClockAvg: " + Cpu.ClockAvg.ToString("00000.00") + " MHz");
                 var list = Cpu.CoresClock;
                 for (int i = 0; i < list.Count; i++)
                 {
