@@ -24,6 +24,15 @@ namespace HMetrics
         {
             return Regex.Match(inputString, pattern).Groups[GroupIndex].Value;
         }
+        internal static List<string> ReadCpuInfoProperties(string inputString, string pattern, int GroupIndex)
+        {
+            List<string> list = new List<string>();
+            foreach (Match match in Regex.Matches(inputString, pattern))
+            {
+                list.Add(match.Groups[GroupIndex].Value);
+            }
+            return list;
+        }
         internal static bool ReadCpuInfoProperty(string inputString, string pattern, int GroupIndex, out string ReadCpuInfoProperty)
         {
             var match = Regex.Match(inputString, pattern).Groups[GroupIndex];

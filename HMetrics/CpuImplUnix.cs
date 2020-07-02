@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -16,7 +17,6 @@ namespace HMetrics
             if (string.IsNullOrEmpty(cpuInfoLines)) return;
             coresCount.Item2 = int.TryParse(Tools.ReadCpuInfoProperty(cpuInfoLines, @"cpu cores\s+:\s+(.+)", 1), out coresCount.Item1);
             modelName.Item2 = Tools.ReadCpuInfoProperty(cpuInfoLines, @"model name\s+:\s+(.+)", 1, out modelName.Item1);
-            frequency.Item2 = double.TryParse(Tools.ReadCpuInfoProperty(cpuInfoLines, @"cpu MHz\s+:\s+(.+)", 1), out frequency.Item1);
         }
 
         public static CpuImplUnix Current => lazy.Value;
@@ -27,6 +27,33 @@ namespace HMetrics
             chipsetTemp.Item2 = int.TryParse(Tools.GetFileText(@"/sys/class/thermal/thermal_zone0/temp"), out temp);
             if (chipsetTemp.Item2) chipsetTemp.Item1 = temp / 1000.0;
 
+        }
+
+        public override void getClockAvg()
+        {
+            var coresClock = this.CoresClock;
+            if (coresClock.Any())
+            {
+                clockAvg.Item1 = coresClock.Average();
+                clockAvg.Item2 = true;
+            }
+            else clockAvg.Item2 = false;
+        }
+
+        public override void getCoresClock()
+        {
+            string cpuInfoLines = Tools.GetFileText(@"/proc/cpuinfo");
+            if (string.IsNullOrEmpty(cpuInfoLines)) return;
+            var strList = Tools.ReadCpuInfoProperties(cpuInfoLines, @"cpu MHz\s+:\s+(.+)", 1);
+            List<double> clocks = new List<double>();
+            double buf;
+            foreach (var clock in strList)
+            {
+                coresClock.Item2 = double.TryParse(clock.Replace(',', '.'), out buf);
+                if (coresClock.Item2) clocks.Add(buf);
+                else return;
+            }
+            coresClock.Item1 = clocks;
         }
 
         public override void GetTemperature()

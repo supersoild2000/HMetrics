@@ -12,6 +12,16 @@ namespace HMetrics
             throw new NotImplementedException();
         }
 
+        public override void getClockAvg()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void getCoresClock()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void GetTemperature()
         {
             throw new NotImplementedException();

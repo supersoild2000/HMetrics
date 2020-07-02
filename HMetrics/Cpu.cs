@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HMetrics
 {
@@ -7,7 +8,8 @@ namespace HMetrics
         private static CpuImpl impl = CpuImplFabric.GetCpuImpl(Environment.OSVersion.Platform);
         public static int CoresCount => impl.CoresCount;
         public static double Usage => impl.Usage;
-        public static double Frequency => impl.Frequency;
+        public static double ClockAvg => impl.ClockAvg;
+        public static List<double> CoresClock => impl.CoresClock;
 
         public static string ModelName => impl.ModelName;
         public static double ChipsetTemp => impl.ChipsetTemp;
